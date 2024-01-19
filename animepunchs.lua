@@ -4,7 +4,45 @@ local membros_autorizados = {"EspacialCar", "NoobdoRodox"}
 -- Obtém o nome do jogador no jogo
 local jogador = game.Players.LocalPlayer
 local nome_do_jogador = jogador.Name
+getgenv().doRaidBoss = false
+local bossPath = workspace.Client.Enemies.RaidBoss
 
+-- Funções
+
+function teleportTo(placeCFrame)
+    local plyr = game.Players.LocalPlayer;
+    if plyr.Character then
+        plyr.Character.HumanoidRootPart.CFrame = placeCFrame;
+    end
+end
+
+function getRaidBoss()
+    while doRaidBoss == true do
+        for _, boss in pairs(bossPath:GetChildren()) do
+            -- Verifica se o filho é um Model e se possui uma RootPart
+            if boss:IsA("Model") and boss:FindFirstChild("HumanoidRootPart") then
+                local rootPart = boss.HumanoidRootPart
+
+                -- Obtém o CFrame da RootPart
+                local rootPartCFrame = rootPart.CFrame
+
+                -- Imprime a matriz de transformação do CFrame
+                print("CFrame da RootPart do boss:", rootPartCFrame)
+                
+                function teleportTo(placeCFrame)
+                    local plyr = game.Players.LocalPlayer;
+                    if plyr.Character then
+                        plyr.Character.HumanoidRootPart.CFrame = placeCFrame;
+                    end
+                end
+                
+                teleportTo(rootPartCFrame)
+                
+            end
+        end
+    end
+end
+--Fim Das Funções
 
 
 -- Função para verificar se o jogador está na lista de membros autorizados
@@ -45,12 +83,12 @@ if jogadorEstaAutorizado() then
 
 
     PlayerSection:AddToggle({
-        Name = "Auto Click",
+        Name = "Auto Raid Boss",
         Default = false,
         Callback = function(Value)
-            autoClick = Value;
-            if autoClick == true then
-                getClick();
+            doRaidBoss = Value;
+            if doRaidBoss == true then
+                getRaidBoss();
             end
         end    
     })
