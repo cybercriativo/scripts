@@ -127,11 +127,22 @@ function doCardRaid()
 
 end
 
+
+function teleportTo(placeCFrame)
+    local plyr = game.Players.LocalPlayer;
+    if plyr.Character then
+        plyr.Character.HumanoidRootPart.CFrame = placeCFrame;
+    end
+end
+
 function doRaidBoss()
+    
     spawn(function()
         
         local bossPath = workspace.Client.Enemies.RaidBoss
+
         while getRaidBoss == true do
+
             -- Itera pelos filhos do caminho dos bosses
             for _, boss in pairs(bossPath:GetChildren()) do
                 -- Verifica se o filho é um Model e se possui uma RootPart
@@ -152,9 +163,13 @@ function doRaidBoss()
                     end
                     teleportTo(rootPartCFrame)
                 end
+
             end
+
         end
+
     end)
+
 end
 
 
