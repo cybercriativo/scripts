@@ -135,43 +135,6 @@ function teleportTo(placeCFrame)
     end
 end
 
-function doRaidBoss()
-    
-    spawn(function()
-        
-        local bossPath = workspace.Client.Enemies.RaidBoss
-
-        while getRaidBoss == true do
-
-            -- Itera pelos filhos do caminho dos bosses
-            for _, boss in pairs(bossPath:GetChildren()) do
-                -- Verifica se o filho é um Model e se possui uma RootPart
-                if boss:IsA("Model") and boss:FindFirstChild("HumanoidRootPart") then
-                    local rootPart = boss.HumanoidRootPart
-
-                    -- Obtém o CFrame da RootPart
-                    local rootPartCFrame = rootPart.CFrame
-
-                    -- Imprime a matriz de transformação do CFrame
-                    print("CFrame da RootPart do boss:", rootPartCFrame)
-                    
-                    function teleportTo(placeCFrame)
-                        local plyr = game.Players.LocalPlayer;
-                        if plyr.Character then
-                            plyr.Character.HumanoidRootPart.CFrame = placeCFrame;
-                        end
-                    end
-                    teleportTo(rootPartCFrame)
-                end
-
-            end
-
-        end
-
-    end)
-
-end
-
 
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 
