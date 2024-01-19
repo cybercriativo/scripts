@@ -4,22 +4,6 @@ local membros_autorizados = {"EspacialCar", "NoobdoRodox"}
 -- Obtém o nome do jogador no jogo
 local jogador = game.Players.LocalPlayer
 local nome_do_jogador = jogador.Name
-getgenv().autoClick = false
-
-
-function getClick()
-    while autoClick == true do 
-        spawn(function()
-            local args = {
-                [1] = "Click",
-                [2] = false
-            }
-            
-            game:GetService("ReplicatedStorage").ClickEvent:FireServer(unpack(args))
-            wait(1)
-        end)
-    end
-end
 
 
 
