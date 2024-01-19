@@ -10,34 +10,31 @@ local bossPath = workspace.Client.Enemies.RaidBoss
 -- Funções
 
 function getRaidBoss()
-    spawn(function() 
-    
-        while doRaidBoss == true do
-            for _, boss in pairs(bossPath:GetChildren()) do
-                -- Verifica se o filho é um Model e se possui uma RootPart
-                if boss:IsA("Model") and boss:FindFirstChild("HumanoidRootPart") then
-                    local rootPart = boss.HumanoidRootPart
-    
-                    -- Obtém o CFrame da RootPart
-                    local rootPartCFrame = rootPart.CFrame
-    
-                    -- Imprime a matriz de transformação do CFrame
-                    print("CFrame da RootPart do boss:", rootPartCFrame)
-                    
-                    function teleportTo(placeCFrame)
-                        local plyr = game.Players.LocalPlayer;
-                        if plyr.Character then
-                            plyr.Character.HumanoidRootPart.CFrame = placeCFrame;
-                        end
+     
+    while doRaidBoss == true do
+        for _, boss in pairs(bossPath:GetChildren()) do
+            -- Verifica se o filho é um Model e se possui uma RootPart
+            if boss:IsA("Model") and boss:FindFirstChild("HumanoidRootPart") then
+                local rootPart = boss.HumanoidRootPart
+
+                -- Obtém o CFrame da RootPart
+                local rootPartCFrame = rootPart.CFrame
+
+                -- Imprime a matriz de transformação do CFrame
+                print("CFrame da RootPart do boss:", rootPartCFrame)
+                
+                function teleportTo(placeCFrame)
+                    local plyr = game.Players.LocalPlayer;
+                    if plyr.Character then
+                        plyr.Character.HumanoidRootPart.CFrame = placeCFrame;
                     end
-                    wait(1)
-                    teleportTo(rootPartCFrame)
-                    wait(1)
                 end
+                wait(1)
+                teleportTo(rootPartCFrame)
+                wait(1)
             end
         end
-    
-    end)
+    end
 end
 --Fim Das Funções
 
