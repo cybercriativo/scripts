@@ -1,5 +1,4 @@
 getgenv().getCardRaid = false;
-getgenv().getRaidBoss = false;
 
 function doCardRaid()
 
@@ -125,14 +124,6 @@ function doCardRaid()
 
     end)
 
-end
-
-
-function teleportTo(placeCFrame)
-    local plyr = game.Players.LocalPlayer;
-    if plyr.Character then
-        plyr.Character.HumanoidRootPart.CFrame = placeCFrame;
-    end
 end
 
 
